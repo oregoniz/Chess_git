@@ -13,7 +13,7 @@ public class Bishop extends ChessPiece {
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (isInTheField(chessBoard, toLine, toColumn) && isRightMove(chessBoard, line, column, toLine, toColumn) && isNotSame(chessBoard, line, column, toLine, toColumn)) {
+        if (isInTheField(chessBoard, toLine, toColumn) && isRightMove(line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
             return true;
         } else return false;
     }
@@ -24,7 +24,7 @@ public class Bishop extends ChessPiece {
     }
 
     @Override
-    boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+    boolean isRightMove(int line, int column, int toLine, int toColumn) {
         boolean is = false;
         if (Math.abs(toLine - line) == Math.abs(toColumn - column)) is = true;
         return is;

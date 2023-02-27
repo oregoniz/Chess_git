@@ -1,7 +1,5 @@
 package Chess;
 
-import javax.sound.sampled.Line;
-
 public class Pawn extends ChessPiece{
 
     public Pawn(String color) {
@@ -16,7 +14,7 @@ public class Pawn extends ChessPiece{
     @Override
 
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (isInTheField(chessBoard,toLine, toColumn) && isRightMove(chessBoard,line, column, toLine, toColumn) && isNotSame(chessBoard,line, column, toLine, toColumn)) {
+        if (isInTheField(chessBoard,toLine, toColumn) && isRightMove(line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
             return true;
         } else return false;
     }
@@ -27,7 +25,7 @@ public class Pawn extends ChessPiece{
     }
 
     @Override
-    public boolean isRightMove(ChessBoard chessBoard,int line, int column, int toLine, int toColumn) {
+    public boolean isRightMove(int line, int column, int toLine, int toColumn) {
         int step = toLine - line;
         boolean is = false;
         if (column == toColumn) {
