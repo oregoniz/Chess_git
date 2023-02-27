@@ -26,7 +26,7 @@ public class Bishop extends ChessPiece {
     @Override
     boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         boolean is = false;
-        if ((line - toLine) == (column - toColumn)) is = true;
+        if (Math.abs(toLine - line) == Math.abs(toColumn - column)) is = true;
         return is;
     }
 }
