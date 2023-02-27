@@ -14,7 +14,7 @@ abstract class ChessPiece {
 
     public abstract String getSymbol();
 
-    abstract boolean isRightMove(int line, int column, int toLine, int toColumn);
+    abstract boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
 
     public boolean isInTheField(ChessBoard chessBoard, int toLine, int toColumn) {
         return chessBoard.checkPos(toLine) && chessBoard.checkPos(toColumn);

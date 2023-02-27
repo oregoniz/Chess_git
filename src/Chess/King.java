@@ -27,7 +27,7 @@ public class King extends ChessPiece {
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (isInTheField(chessBoard, toLine, toColumn) && isRightMove(line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
+        if (isInTheField(chessBoard, toLine, toColumn) && isRightMove(chessBoard, line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
             return true;
         } else return false;
     }
@@ -38,7 +38,7 @@ public class King extends ChessPiece {
     }
 
     @Override
-    boolean isRightMove(int line, int column, int toLine, int toColumn) {
+    boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         boolean is = false;
         if (Math.abs(toLine - line) <= 1 && Math.abs(toColumn - column) <= 1) is = true;
         return is;

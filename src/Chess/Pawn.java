@@ -1,6 +1,6 @@
 package Chess;
 
-public class Pawn extends ChessPiece{
+public class Pawn extends ChessPiece {
 
     public Pawn(String color) {
         super(color);
@@ -14,7 +14,7 @@ public class Pawn extends ChessPiece{
     @Override
 
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (isInTheField(chessBoard,toLine, toColumn) && isRightMove(line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
+        if (isInTheField(chessBoard, toLine, toColumn) && isRightMove(chessBoard, line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
             return true;
         } else return false;
     }
@@ -24,24 +24,44 @@ public class Pawn extends ChessPiece{
         return "P";
     }
 
+   /* public boolean isFigOnWay(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
+        boolean is = false;
+
+        for (int i = line; i < toLine; i++) {
+            if (chessBoard.board[i][line] != null) is = true;
+        }
+        return is;
+    }
+
+    public boolean ifCanEat(int line, int column, int toLine, int toColumn) {
+
+    }*/
+
     @Override
-    public boolean isRightMove(int line, int column, int toLine, int toColumn) {
+    public boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         int step = toLine - line;
         boolean is = false;
         if (column == toColumn) {
-            if (color.equals("White") && line == 1 && (step == 1 || step == 2)) {
+            if (color.equals("White") && line == 1 && step == 1 && chessBoard.board[toLine][column] == null) {
                 is = true;
             }
-            if (color.equals("Black") && line == 6 && (step == -1 || step == -2)) {
+            if (color.equals("White") && line == 1 && step == 2 && chessBoard.board[toLine][column] == null && chessBoard.board[toLine - 1][column] == null) {
                 is = true;
             }
-            if (color.equals("White") && step == 1) {
+            if (color.equals("Black") && line == 6 && step == -1 && chessBoard.board[toLine][column] == null) {
                 is = true;
             }
-            if (color.equals("Black") && step == -1) {
+            if (color.equals("Black") && line == 6 && step == -2 && chessBoard.board[toLine][column] == null && chessBoard.board[toLine + 1][column] == null) {
+                is = true;
+            }
+            if (color.equals("White") && step == 1 && chessBoard.board[toLine][column] == null) {
+                is = true;
+            }
+            if (color.equals("Black") && step == -1 && chessBoard.board[toLine][column] == null) {
                 is = true;
             }
         }
+
         return is;
     }
 }

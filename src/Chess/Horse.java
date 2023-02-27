@@ -13,7 +13,7 @@ public class Horse extends ChessPiece {
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (isInTheField(chessBoard, toLine, toColumn) && isRightMove(line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
+        if (isInTheField(chessBoard, toLine, toColumn) && isRightMove(chessBoard, line, column, toLine, toColumn) && isNotSame(line, column, toLine, toColumn)) {
             return true;
         } else return false;
     }
@@ -24,7 +24,7 @@ public class Horse extends ChessPiece {
     }
 
     @Override
-    public boolean isRightMove(int line, int column, int toLine, int toColumn) {
+    public boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         boolean is = false;
         if (Math.abs(line - toLine) == 2) {
             if (Math.abs(column - toColumn) == 1) is = true;
