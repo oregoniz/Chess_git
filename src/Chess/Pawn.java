@@ -40,28 +40,28 @@ public class Pawn extends ChessPiece {
     @Override
     public boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         int step = toLine - line;
-        boolean is = false;
+        boolean canStep = false;
         if (column == toColumn) {
             if (color.equals("White") && line == 1 && step == 1 && chessBoard.board[toLine][column] == null) {
-                is = true;
+                canStep = true;
             }
             if (color.equals("White") && line == 1 && step == 2 && chessBoard.board[toLine][column] == null && chessBoard.board[toLine - 1][column] == null) {
-                is = true;
+                canStep = true;
             }
             if (color.equals("Black") && line == 6 && step == -1 && chessBoard.board[toLine][column] == null) {
-                is = true;
+                canStep = true;
             }
             if (color.equals("Black") && line == 6 && step == -2 && chessBoard.board[toLine][column] == null && chessBoard.board[toLine + 1][column] == null) {
-                is = true;
+                canStep = true;
             }
             if (color.equals("White") && step == 1 && chessBoard.board[toLine][column] == null) {
-                is = true;
+                canStep = true;
             }
             if (color.equals("Black") && step == -1 && chessBoard.board[toLine][column] == null) {
-                is = true;
+                canStep = true;
             }
         }
 
-        return is;
+        return canStep;
     }
 }

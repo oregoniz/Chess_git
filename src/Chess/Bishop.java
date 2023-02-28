@@ -25,49 +25,54 @@ public class Bishop extends ChessPiece {
 
     @Override
     boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        boolean is = false;
-        boolean otw = false;
+        boolean canStep = false;
+        boolean onTheWay = false;
         int stepsL = toLine - line;
         int stepsC = toColumn - column;
-        String direction = "";
-        if (stepsL > 0 && stepsC > 0) direction = "ur";
-        if (stepsL > 0 && stepsC < 0) direction = "ul";
-        if (stepsL < 0 && stepsC > 0) direction = "dr";
-        if (stepsL < 0 && stepsC > 0) direction = "dl";
 
         if (Math.abs(stepsL) == Math.abs(stepsC)) {
-            is = true;
+            canStep = true;
+        }
+        if (canStep) {
+            String direction = "";
+            int steps = Math.abs(stepsL);
+            if (stepsL > 0 && stepsC > 0) direction = "ur";
+            if (stepsL > 0 && stepsC < 0) direction = "ul";
+            if (stepsL < 0 && stepsC > 0) direction = "dr";
+            if (stepsL < 0 && stepsC < 0) direction = "dl";
+
             switch (direction) {
                 case "ur":
-                    for (int i = line; i <= line + Math.abs(stepsL); i++) {
-                        if (chessBoard.board[i][i] != null) {
-                            otw = true;
-                            break;
+                    for (int i = 1; i <= steps; i++) {
+                        if (chessBoard.board[line + i][column + i] != null) {
+                            onTheWay = true;
                         }
                     }
+                    break;
                 case "ul":
-                    for (int i = line; i <= line + Math.abs(stepsL); i++) {
-                        if (chessBoard.board[i][-i] != null) {
-                            otw = true;
-                            break;
+                    for (int i = 1; i <= steps; i++) {
+                        if (chessBoard.board[line + i][column - i] != null) {
+                            onTheWay = true;
                         }
                     }
+                    break;
                 case "dr":
-                    for (int i = line; i <= line + Math.abs(stepsL); i++) {
-                        if (chessBoard.board[-i][i] != null) {
-                            otw = true;
-                            break;
+                    for (int i = 1; i <= steps; i++) {
+                        if (chessBoard.board[line - i][column + i] != null) {
+                            onTheWay = true;
                         }
                     }
+                    break;
                 case "dl":
-                    for (int i = line; i <= line + Math.abs(stepsL); i++) {
-                        if (chessBoard.board[-i][-i] != null) {
-                            otw = true;
-                            break;
+                    for (int i = 1; i <= steps; i++) {
+                        if (chessBoard.board[line - i][column - i] != null) {
+                            onTheWay = true;
                         }
                     }
+                    break;
             }
         }
-        return is && otw;
+
+        return canStep && !onTheWay;
     }
 }

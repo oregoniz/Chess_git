@@ -39,8 +39,10 @@ public class King extends ChessPiece {
 
     @Override
     boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        boolean is = false;
-        if (Math.abs(toLine - line) <= 1 && Math.abs(toColumn - column) <= 1) is = true;
-        return is;
+        boolean canStep = false;
+        if (Math.abs(toLine - line) <= 1 && Math.abs(toColumn - column) <= 1 && chessBoard.board[toLine][toColumn] == null) {
+            canStep = true;
+        }
+        return canStep;
     }
 }
