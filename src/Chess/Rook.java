@@ -42,34 +42,37 @@ public class Rook extends ChessPiece {
 
             switch (direction) {
                 case "r":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line][column + i] != null) {
                             onTheWay = true;
                         }
                     }
                     break;
                 case "l":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line][column - i] != null) {
                             onTheWay = true;
                         }
                     }
                     break;
                 case "u":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line - i][column] != null) {
                             onTheWay = true;
                         }
                     }
                     break;
                 case "d":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line - i][column] != null) {
                             onTheWay = true;
                         }
 
                         break;
                     }
+            }
+            if (chessBoard.board[toLine][toColumn] != null && chessBoard.board[toLine][toColumn].color.equals(this.color)) {
+                onTheWay = true;
             }
         }
         return canStep && !onTheWay;

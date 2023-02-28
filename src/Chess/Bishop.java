@@ -43,35 +43,40 @@ public class Bishop extends ChessPiece {
 
             switch (direction) {
                 case "ur":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line + i][column + i] != null) {
                             onTheWay = true;
+
                         }
                     }
                     break;
                 case "ul":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line + i][column - i] != null) {
                             onTheWay = true;
                         }
                     }
                     break;
                 case "dr":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line - i][column + i] != null) {
                             onTheWay = true;
                         }
                     }
                     break;
                 case "dl":
-                    for (int i = 1; i <= steps; i++) {
+                    for (int i = 1; i < steps; i++) {
                         if (chessBoard.board[line - i][column - i] != null) {
                             onTheWay = true;
                         }
                     }
                     break;
             }
+            if (chessBoard.board[toLine][toColumn] != null && chessBoard.board[toLine][toColumn].color.equals(this.color)) {
+                onTheWay = true;
+            }
         }
+
 
         return canStep && !onTheWay;
     }

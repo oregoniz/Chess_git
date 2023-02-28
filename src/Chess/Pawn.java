@@ -24,19 +24,6 @@ public class Pawn extends ChessPiece {
         return "P";
     }
 
-   /* public boolean isFigOnWay(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        boolean is = false;
-
-        for (int i = line; i < toLine; i++) {
-            if (chessBoard.board[i][line] != null) is = true;
-        }
-        return is;
-    }
-
-    public boolean ifCanEat(int line, int column, int toLine, int toColumn) {
-
-    }*/
-
     @Override
     public boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         int step = toLine - line;
@@ -60,8 +47,14 @@ public class Pawn extends ChessPiece {
             if (color.equals("Black") && step == -1 && chessBoard.board[toLine][column] == null) {
                 canStep = true;
             }
-        }
+        } else if (Math.abs(column - toColumn) == 1) {
+            if (color.equals("White") && (toLine == line + 1) && !chessBoard.board[toLine][column].color.equals("Black")) {
+                canStep = true;
+            }
+            if (color.equals("Black") && (toLine == line - 1) && !chessBoard.board[toLine][column].color.equals("White")) {
+                canStep = true;}
+            }
 
-        return canStep;
+            return canStep;
+        }
     }
-}

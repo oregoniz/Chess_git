@@ -8,7 +8,7 @@ public class King extends ChessPiece {
 
     public boolean isUnderAttack(ChessBoard chessboard, int line, int column) {
         boolean is = false;
-        for (int i = 0; i < 7; i++) {
+          for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 if (chessboard.board[i][j] != null) {
                     if (!chessboard.board[i][j].color.equals(this.color) && chessboard.board[i][j].canMoveToPosition(chessboard, i, j, line, column)) {
@@ -40,7 +40,7 @@ public class King extends ChessPiece {
     @Override
     boolean isRightMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         boolean canStep = false;
-        if (Math.abs(toLine - line) <= 1 && Math.abs(toColumn - column) <= 1 && chessBoard.board[toLine][toColumn] == null) {
+        if (Math.abs(toLine - line) <= 1 && Math.abs(toColumn - column) <= 1 && (chessBoard.board[toLine][toColumn] == null|| !chessBoard.board[toLine][toColumn].color.equals(this.color) )) {
             canStep = true;
         }
         return canStep;
